@@ -17,11 +17,11 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper mapper;
 
 	@Override
-	public void insert(BoardVO board) {
+	public void register(BoardVO board) {
 		
-		log.info("insert........." + board);
+		log.info("register........." + board);
 		
-		mapper.insert(board);
+		mapper.register(board);
 	}
 
 	@Override

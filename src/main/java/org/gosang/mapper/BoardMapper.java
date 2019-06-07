@@ -10,7 +10,7 @@ public interface BoardMapper {
 //	@Select("select * from tbl_board where bno > 0 ") BoardMapper.xml에 있음 
 	public List<BoardVO> getList();
 	
-	public void insert(BoardVO board);
+	public void register(BoardVO board);
 	
 	public BoardVO read(Long bno);
 	
