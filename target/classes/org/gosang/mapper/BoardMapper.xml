@@ -10,7 +10,7 @@
 	]]>
 	</select>
 	
-	<insert id="insert">
+	<insert id="register">
 		insert into tbl_board(title,content,writer)
 		values(#{title}, #{content}, #{writer})
 	</insert>

@@ -29,7 +29,7 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
-
+	//게시물 등록 
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
@@ -41,6 +41,13 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	// 입력페이지 보기  
+	@GetMapping("/register") 
+	public void register() {
+		
+	}
+	
 	
 	
 	@GetMapping("/get")
