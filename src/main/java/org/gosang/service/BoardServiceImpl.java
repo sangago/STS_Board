@@ -25,7 +25,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO get(Long bno) {
+	public BoardVO get(int bno) {
 		
 		log.info("get........." + bno);
 		
@@ -41,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(Long bno) {
+	public boolean remove(int bno) {
 		
 		log.info("remove........." + bno);
 		

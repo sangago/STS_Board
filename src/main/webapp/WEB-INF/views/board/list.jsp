@@ -20,6 +20,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Board List Page</h6>
+              <button id='regBtn' type="button" class="btn btn-dark regBtn">Register New Board</button>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -44,9 +45,33 @@
                   		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
                   	</tr>
                   </c:forEach>
-                  
                                     
                 </table>
+ 
+  
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        처리가 완료되었습니다
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <!-- data-dismiss : 모달창을 닫히도록한 -->
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+                
+                
+                
               </div>
             </div>
           </div>
@@ -57,5 +82,41 @@
       </div>
       <!-- End of Main Content -->
       
+      
+      
+      <script type="text/javascript">
+      
+      	$(document).ready(function(){
+      		
+      		var result = '<c:out value="${result}"/>';
+      		
+      		/* modal처리 */
+      		checkModal(result);
+      		
+      		
+      		function checkModal(result){
+      			
+      			if(result === ''){
+      				return;
+      			}
+      			
+      			if(parseInt(result) == null){
+      				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+      			}
+      			
+      			$("#exampleModal").modal('show');
+      		}
+      		
+      		
+      		/* Register New Board 버튼 눌렀을 */
+      		$("#regBtn").on("click", function(){
+      			self.location = "/board/register"	/* URL 이동 */
+      		});
+      		
+      	});
+      	
+      </script>
+
+</script>
       
 <%@include file="../includes/footer.jsp" %>

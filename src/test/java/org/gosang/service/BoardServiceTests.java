@@ -30,20 +30,20 @@ public class BoardServiceTests {
 		
 	}
 	
-	// 등록 
-//	@Test
-//	public void testInsert() {
-//		
-//		BoardVO board = new BoardVO();
-//
-//		board.setTitle("수정된 제목");
-//		board.setContent("수정된 내용");
-//		board.setWriter("user00");
-//
-//		service.insert(board);
-//		
-//		log.info("testInsert 테스트");
-//	}
+//	 등록 
+	@Test
+	public void testInsert() {
+		
+		BoardVO board = new BoardVO();
+
+		board.setTitle("새로 작성하는 글 제목");
+		board.setContent("새로 작성하는 글 내용");
+		board.setWriter("user00");
+
+		service.register(board);
+		
+		log.info("testInsert 테스트");
+	}
 	
 	// 목록 
 	@Test

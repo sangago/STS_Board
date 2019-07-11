@@ -51,7 +51,7 @@ public class BoardController {
 	
 	
 	@GetMapping("/get")
-	public void get(@RequestParam("bno") Long bno, Model model) {
+	public void get(@RequestParam("bno") int bno, Model model) {
 		
 		log.info("/get");
 		model.addAttribute("board", service.get(bno));
@@ -70,7 +70,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) {
 		
 		log.info("remove..." + bno);
 		if(service.remove(bno)) {
