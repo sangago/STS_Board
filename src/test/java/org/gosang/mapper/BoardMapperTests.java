@@ -38,21 +38,21 @@ public class BoardMapperTests {
 //	
 	@Test
 	public void testRead() {
-		BoardVO board = mapper.read(3L);
+		BoardVO board = mapper.read(30);
 		
 		log.info(board);
 	}
 	
 	@Test
 	public void testDelete() {
-		log.info("DELETE COUNT : " + mapper.delete(2L));
+		log.info("DELETE COUNT : " + mapper.delete(2));
 	}
 	
 	@Test
 	public void testUpdate() {
 		
 		BoardVO board = new BoardVO();
-		board.setBno(3L);
+		board.setBno(3);
 		board.setTitle("수정된 제목");
 		board.setContent("수정된 내용");
 		board.setWriter("user00");

@@ -40,8 +40,8 @@
 	          	</div>
 	          	
 	          	<div class="form-group">
-	          		<button type="submit" class="btn btn-primary">Submit</button>
-	          		<button type="reset" class="btn btn-danger">Reset</button>
+	          		<button type="submit" class="btn btn-primary button-right-m5">Submit</button>
+	          		<button type="reset" class="btn btn-danger button-right-m5">Reset</button>
 	          	</div>
           	</form>
           	

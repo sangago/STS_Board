@@ -58,7 +58,7 @@ public class BoardServiceTests {
 	@Test
 	public void testGet() {
 		
-		log.info(service.get(1L));
+		log.info(service.get(1));
 		
 	}
 	
@@ -66,7 +66,7 @@ public class BoardServiceTests {
 	@Test
 	public void testUpdate() {
 		
-		BoardVO board = service.get(4L);
+		BoardVO board = service.get(4);
 		
 		if(board == null) {
 			return;
@@ -82,7 +82,7 @@ public class BoardServiceTests {
 	@Test
 	public void testDelete() {
 		
-		log.info("REMOVE RESULT: " + service.remove(3L));
+		log.info("REMOVE RESULT: " + service.remove(3));
 	}
 	
 }

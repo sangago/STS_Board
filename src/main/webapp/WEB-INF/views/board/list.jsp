@@ -39,7 +39,9 @@
                   <c:forEach items="${list}" var="board">
                   	<tr>
                   		<td><c:out value="${board.bno}" /></td>
-                  		<td><c:out value="${board.title}" /></td>
+                  		<td><a class="atag" href='/board/get?bno=<c:out value="${board.bno}"/>'>
+                  			<c:out value="${board.title}"/>
+                  		</a></td>
                   		<td><c:out value="${board.writer}" /></td>
                   		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>			<!-- 대문자 MM를 써야 제대로 나옴 -->
                   		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
@@ -63,8 +65,8 @@
 		        처리가 완료되었습니다
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <!-- data-dismiss : 모달창을 닫히도록한 -->
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="button" class="btn btn-secondary button-right-m5" data-dismiss="modal">Close</button> <!-- data-dismiss : 모달창을 닫히도록한 -->
+		        <button type="button" class="btn btn-primary button-right-m5">Save changes</button>
 		      </div>
 		    </div>
 		  </div>
@@ -93,10 +95,12 @@
       		/* modal처리 */
       		checkModal(result);
       		
+      		/* 새글을 등록하는것 이외에 modal창을 띄울 필요가 없음 */
+      		history.replaceState({}, null, null);
       		
       		function checkModal(result){
       			
-      			if(result === ''){
+      			if(result === '' || history.state){
       				return;
       			}
       			
