@@ -52,7 +52,7 @@
     			
     			<!-- <button>에서 onclick 속성으로 링크를 직접처리하는 방식에서 <form>태그 이용으로 수정 -->
     			<form id='operForm' action="/board/modify" method="get">
-    				<input type='hidden' id='bno' value='<c:out value="${ board.bno }" />'>
+    				<input type='hidden' id='bno' name='bno' value='<c:out value="${ board.bno }" />'>
     			</form>
           		
           	</div><!-- panel-body END -->
