@@ -46,15 +46,40 @@
           			location.href : 새로운 페이지로 이동된다(히스토리에 기록된다)
           		-->
           		<div class="form-group">
-          			<button data-oper='modify' class="btn btn-warning button-right-m5"  onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
-          			<button data-oper='list' class="btn btn-info button-right-m5"  onclick="location.href='/board/list'">List</button>
+          			<button data-oper='modify' class="btn btn-warning button-right-m5">Modify</button>
+          			<button data-oper='list' class="btn btn-info button-right-m5">List</button>
     			</div>
+    			
+    			<!-- <button>에서 onclick 속성으로 링크를 직접처리하는 방식에서 <form>태그 이용으로 수정 -->
+    			<form id='operForm' action="/board/modify" method="get">
+    				<input type='hidden' id='bno' value='<c:out value="${ board.bno }" />'>
+    			</form>
           		
           	</div><!-- panel-body END -->
           	
           </div>
           
-          
+          <script type="text/javascript">
+          	$(document).ready(function(){
+          		
+          		var operForm = $("#operForm");
+          		
+          		$("button[data-oper='modify']").on("click", function(e){
+          			
+          			operForm.attr("action","/board/modify").submit();
+          			
+          		});
+          		
+				$("button[data-oper='list']").on("click", function(e){
+          			
+					operForm.find("#bno").remove();
+          			operForm.attr("action","/board/list")
+          			operForm.submit();
+          			
+          		});
+          		
+          	});
+          </script>
 
         </div>
         <!-- /.container-fluid -->

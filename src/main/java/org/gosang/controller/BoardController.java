@@ -51,7 +51,7 @@ public class BoardController {
 	
 	// 수정/삭제가 가능한 화면으로 이동
 	@GetMapping({"/get","/modify"})		// 배열로 처리 
-	public void get(@RequestParam("bno") int bno, Model model) {
+	public void get(@RequestParam("bno") Integer bno, Model model) {
 		
 		log.info("/get or /modify");
 		model.addAttribute("board", service.get(bno));
@@ -70,7 +70,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) {
+	public String remove(@RequestParam("bno") Integer bno, RedirectAttributes rttr) {
 		
 		log.info("remove..." + bno);
 		if(service.remove(bno)) {

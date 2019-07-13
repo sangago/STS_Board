@@ -85,7 +85,7 @@
 		var formObj = $("form");
 		
 		$('button').on("click", function(e){
-			e.preventDefault();
+			e.preventDefault(); //<form>태그의 버튼의 기본은 submit으로 처리하기 때문에 e.preventDefault()로 기본 동작을 막고 마지막에 submit수행(클릭이벤트 외에 별도의 브라우저 행동을 막기위해 사용)
 			
 			var operation = $(this).data("oper");
 			
@@ -95,8 +95,11 @@
 				formObj.attr("action", "/board/remove");
 			}else if(operation ==='list'){
 				// list로 이동
-				self.location="/board/list";
-				return;
+				formObj.attr("action","/board/list").attr("method","get");
+				formObj.empty();
+				
+				/* self.location="/board/list";
+				return; */
 			}
 			formObj.submit();
 		});
