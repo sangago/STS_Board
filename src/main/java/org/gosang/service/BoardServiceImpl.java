@@ -3,6 +3,7 @@ package org.gosang.service;
 import java.util.List;
 
 import org.gosang.domain.BoardVO;
+import org.gosang.domain.Criteria;
 import org.gosang.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
 
@@ -48,12 +49,20 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delete(bno) == 1;
 	}
 
+//	@Override
+//	public List<BoardVO> getList() {
+//		
+//		log.info("getList............");
+//		
+//		return mapper.getList();
+//	}
+	
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria cri){
 		
-		log.info("getList............");
+		log.info("get List with criteria: " + cri);
 		
-		return mapper.getList();
+		return mapper.getListWithPaging(cri);
 	}
 	
 }

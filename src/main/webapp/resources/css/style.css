@@ -6,3 +6,12 @@
 .atag{color:#858796;}
 .atag:hover{color:black; text-decoration:none;}
 .hidden{display:hidden;}
+
+
+.pagination {float:right; border-top:thin solid #999; border-bottom:thin solid #999;}
+.pagination a {color:#727484; display:block; padding:5px 10px;}
+.pageNumber {border-right:thin solid #999;}
+
+.pagination li:nth-child(1) {border-left:thin solid #999;}
+.previous {border-right:thin solid #999;}
+.next {border-right:thin solid #999;}

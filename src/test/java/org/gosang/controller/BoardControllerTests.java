@@ -27,6 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardControllerTests {
 	
+	
 	@Setter(onMethod_ = { @Autowired } )
 	
 	private WebApplicationContext ctx;
@@ -40,15 +41,15 @@ public class BoardControllerTests {
 	
 	
 	
-	@Test
-	public void testList() throws Exception{
-		
-		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
-				.andReturn()			// getList()에서 반환된 결과 
-				.getModelAndView()		// 요청을 통해 생성된 ModelAndView 객체를 구함 
-				.getModelMap());
-	}
+//	@Test
+//	public void testList() throws Exception{
+//		
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+//				.andReturn()			// getList()에서 반환된 결과 
+//				.getModelAndView()		// 요청을 통해 생성된 ModelAndView 객체를 구함 
+//				.getModelMap());
+//	}
 	
 	
 	@Test
@@ -100,6 +101,18 @@ public class BoardControllerTests {
 		
 		log.info(resultPage);
 	}
+	
+	
+//	@Test
+//	public void testListPaging() throws Exception {
+//		
+//		log.info(mockMvc.perform(
+//			MockMvcRequestBuilders.get("/board/list")
+//			.param("pageNum", "2")
+//			.param("amount", "50"))
+//			.andReturn().getModelAndView().getModelMap());
+//	}
+	
 }
 
 /* MockMvc

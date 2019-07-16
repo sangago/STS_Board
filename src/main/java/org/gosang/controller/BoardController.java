@@ -1,6 +1,8 @@
 package org.gosang.controller;
 
 import org.gosang.domain.BoardVO;
+import org.gosang.domain.Criteria;
+import org.gosang.domain.PageDTO;
 import org.gosang.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +23,21 @@ public class BoardController {
 	
 	private BoardService service;
 	
+//	@GetMapping("/list")
+//	public void list(Model model) {
+//		
+//		log.info("list");
+//		
+//		model.addAttribute("list", service.getList());
+//	}
+	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Criteria cri, Model model) {
 		
-		log.info("list");
+		log.info("list:" + cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 		
-		model.addAttribute("list", service.getList());
 	}
 	
 	//게시물 등록 

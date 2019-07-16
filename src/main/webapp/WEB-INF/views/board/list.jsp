@@ -49,7 +49,37 @@
                   </c:forEach>
                                     
                 </table>
- 
+ 		
+ 		
+ 		<!-- page번호 출력 -->
+ 		<div class="pull-right">
+ 			<ul class="pagination">
+ 				
+ 				<!-- 이전버튼 -->
+ 				<c:if test="${ pageMaker.prev }">
+ 					<li class="paginate_button previous"><a href="${ pageMaker.startPage -1 }">Previous</a></li>
+ 				</c:if>
+ 				
+ 				<!-- 페이지 10개씩 -->
+ 				<c:forEach var="num" begin="${ pageMaker.startPage }" end="${ pageMaker.endPage }">
+ 					<li class="paginate_button pageNumber"><a href="${ num }">${ num }</a></li>
+ 				</c:forEach>
+ 				
+ 				<!-- 다버튼 -->
+ 				<c:if test="${ pageMaker.next }">
+ 					<li class="paginate_button next"><a href="${ pageMaker.endPage +1 }">Next</a></li>
+ 				</c:if>
+ 			</ul>
+ 		</div><!-- page번호 출력 종료 END pull-right -->
+ 		
+  		<!-- a태그가 동작하지 못하도록 막음 -->
+  		<form id="actionForm" action="/board/list" method="get">
+  			<input type="hidden" name="pageNum" value="${ pageMaker.cri.pageNum }">
+  			<input type="hidden" name="amount" value="${ pageMaker.cri.amount }">
+  		</form>
+  		
+  
+  
   
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,6 +145,16 @@
       		/* Register New Board 버튼 눌렀을 */
       		$("#regBtn").on("click", function(){
       			self.location = "/board/register"	/* URL 이동 */
+      		});
+      		
+      		
+      		/* 페이지 번호를 클릭하면 처리하는 부분 */
+      		var actionForm = $("#actionForm");
+      		$(".paginate_button a").on("click", function(e){
+      			e.preventDefault();
+      			console.log('click');
+      			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      			actionForm.submit();
       		});
       		
       	});
