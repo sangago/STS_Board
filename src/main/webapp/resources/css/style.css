@@ -13,5 +13,8 @@
 .pageNumber {border-right:thin solid #999;}
 
 .pagination li:nth-child(1) {border-left:thin solid #999;}
+.pagination li>a:active{background-color:#233DBA; color:#fff; text-decoration:none;} /* 마우스를 누르고 있을때 효과 */
+
+
 .previous {border-right:thin solid #999;}
 .next {border-right:thin solid #999;}
