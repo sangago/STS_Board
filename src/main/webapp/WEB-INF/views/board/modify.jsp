@@ -19,7 +19,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 col-lg-12">
-              <h6 class="m-0 font-weight-bold text-primary">Board Read Page</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Board Modify Page</h6>
             </div>
             
             <!-- modify 부분 -->
@@ -66,7 +66,11 @@
 	    			</div>
 	          		
 	          	</div><!-- panel-body END -->
-          	
+          		
+          		<!-- 수정/삭제 데이터 처리를 위한 <form>태그 전송 -->
+          		<input type='hidden' name='pageNum' value='<c:out value="${ cri.pageNum }"/>'>
+          		<input type='hidden' name='amount' value='<c:out value="${ cri.amount }"/>'>
+          		
           	</form>
           	
           </div>
@@ -82,6 +86,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		var formObj = $("form");
 		
 		$('button').on("click", function(e){
@@ -96,7 +101,14 @@
 			}else if(operation ==='list'){
 				// list로 이동
 				formObj.attr("action","/board/list").attr("method","get");
+				
+				// 수정페이지에서 list클릭시 1페이지가 아닌 보고 있던 페이지 이동을 위해 
+				var pageNumTag = $("input[name='pageNum']").clone(); // clone(): dom요소 복사
+				var amountTag = $("input[name='amount']").clone();
+				
 				formObj.empty();
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
 				
 				/* self.location="/board/list";
 				return; */

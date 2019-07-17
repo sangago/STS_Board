@@ -96,7 +96,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary button-right-m5" data-dismiss="modal">Close</button> <!-- data-dismiss : 모달창을 닫히도록한 -->
-		        <button type="button" class="btn btn-primary button-right-m5">Save changes</button>
+		        <!-- <button type="button" class="btn btn-primary button-right-m5">Save changes</button> -->
 		      </div>
 		    </div>
 		  </div>
