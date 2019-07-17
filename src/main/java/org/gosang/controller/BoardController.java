@@ -7,6 +7,7 @@ import org.gosang.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +63,7 @@ public class BoardController {
 	
 	// 수정/삭제가 가능한 화면으로 이동
 	@GetMapping({"/get","/modify"})		// 배열로 처리 
-	public void get(@RequestParam(value="bno",defaultValue="bno") Integer bno, Model model) {
+	public void get(@RequestParam(value="bno", defaultValue="bno") Integer bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		
 		log.info("/get or /modify");
 		model.addAttribute("board", service.get(bno));

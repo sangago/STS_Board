@@ -35,7 +35,7 @@
 				tbl_board
 			where bno > 0
 			order by bno desc, regdate desc
-			limit #{pageNum},#{amount}
+			limit #{pageStart}, #{amount}
 		 ]]>
 	</select>
 	</mapper>

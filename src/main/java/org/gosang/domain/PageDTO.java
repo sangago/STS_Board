@@ -32,4 +32,7 @@ public class PageDTO {
 		
 		this.next = this.endPage < realEnd;
 	}
+	
+//	DTO는 계층간 데이터 교환을 위한 자바빈즈(=계층간 데이터 교환을 위한 객체)
+//	VO로 바꿔 말 할수도 있지만 VO는 read only 속성을 가진다 
 }

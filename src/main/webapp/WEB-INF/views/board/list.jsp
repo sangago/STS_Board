@@ -39,7 +39,7 @@
                   <c:forEach items="${list}" var="board">
                   	<tr>
                   		<td><c:out value="${board.bno}" /></td>
-                  		<td><a class="atag" href='/board/get?bno=<c:out value="${board.bno}"/>'>
+                  		<td><a class="atag move" href='<c:out value="${board.bno}"/>'>
                   			<c:out value="${board.title}"/>
                   		</a></td>
                   		<td><c:out value="${board.writer}" /></td>
@@ -62,7 +62,7 @@
  				
  				<!-- 페이지 10개씩 -->
  				<c:forEach var="num" begin="${ pageMaker.startPage }" end="${ pageMaker.endPage }">
- 					<li class="paginate_button pageNumber"><a href="${ num }">${ num }</a></li>
+ 					<li class="paginate_button pageNumber ${pageMaker.cri.pageNum == num ? "active":""}"><a href="${ num }">${ num }</a></li>
  				</c:forEach>
  				
  				<!-- 다버튼 -->
@@ -154,6 +154,15 @@
       			e.preventDefault();
       			console.log('click');
       			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+      			actionForm.submit();
+      		});
+      		
+      		
+      		/* 게시물 제목 클릭했을 때 이동 */
+      		$(".move").on("click", function(e){
+      			e.preventDefault();
+      			actionForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href") + "'>");
+      			actionForm.attr("action", "/board/get");
       			actionForm.submit();
       		});
       		
