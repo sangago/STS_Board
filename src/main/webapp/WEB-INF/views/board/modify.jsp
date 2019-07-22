@@ -70,6 +70,9 @@
           		<!-- 수정/삭제 데이터 처리를 위한 <form>태그 전송 -->
           		<input type='hidden' name='pageNum' value='<c:out value="${ cri.pageNum }"/>'>
           		<input type='hidden' name='amount' value='<c:out value="${ cri.amount }"/>'>
+          		<input type="hidden" name="type" value='${ cri.type }' />
+  				<input type="hidden" name="keyword" value='${ cri.keyword }' />
+          		
           		
           	</form>
           	
@@ -90,6 +93,7 @@
 		var formObj = $("form");
 		
 		$('button').on("click", function(e){
+			
 			e.preventDefault(); //<form>태그의 버튼의 기본은 submit으로 처리하기 때문에 e.preventDefault()로 기본 동작을 막고 마지막에 submit수행(클릭이벤트 외에 별도의 브라우저 행동을 막기위해 사용)
 			
 			var operation = $(this).data("oper");
@@ -105,10 +109,15 @@
 				// 수정페이지에서 list클릭시 1페이지가 아닌 보고 있던 페이지 이동을 위해 
 				var pageNumTag = $("input[name='pageNum']").clone(); // clone(): dom요소 복사
 				var amountTag = $("input[name='amount']").clone();
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
 				
 				formObj.empty();
+				
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
 				
 				/* self.location="/board/list";
 				return; */

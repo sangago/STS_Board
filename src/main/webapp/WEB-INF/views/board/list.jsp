@@ -38,13 +38,13 @@
                   <!-- 게시글 -->
                   <c:forEach items="${list}" var="board">
                   	<tr>
-                  		<td><c:out value="${board.bno}" /></td>
-                  		<td><a class="atag move" href='<c:out value="${board.bno}"/>'>
-                  			<c:out value="${board.title}"/>
+                  		<td><c:out value="${ board.bno }" /></td>
+                  		<td><a class="atag move" href='<c:out value="${ board.bno }"/>'>
+                  			<c:out value="${ board.title }"/>
                   		</a></td>
-                  		<td><c:out value="${board.writer}" /></td>
-                  		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>			<!-- 대문자 MM를 써야 제대로 나옴 -->
-                  		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>
+                  		<td><c:out value="${ board.writer }" /></td>
+                  		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ board.regdate }" /></td>			<!-- 대문자 MM를 써야 제대로 나옴 -->
+                  		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ board.updateDate }" /></td>
                   	</tr>
                   </c:forEach>
                                     
@@ -57,17 +57,17 @@
  				
  				<form id="searchForm" action="/board/list" method="get">
  					<select name='type'>
- 						<option value="">--</option>
- 						<option value="T">제목</option>
- 						<option value="C">내용</option>
- 						<option value="W">작성자</option>
- 						<option value="TC">제목 or 내용</option>
- 						<option value="TW">제목 or 작성자</option>
- 						<option value="TWC">제목 or 내용 or 작성자</option>
+ 						<option value="" <c:out value="${ pageMaker.cri.type == null? 'selected':'' }"/>>--</option>
+ 						<option value="T" <c:out value="${ pageMaker.cri.type eq 'T'? 'selected':'' }"/>>제목</option>
+ 						<option value="C" <c:out value="${ pageMaker.cri.type eq 'C'? 'selected':'' }"/>>내용</option>
+ 						<option value="W" <c:out value="${ pageMaker.cri.type eq 'W'? 'selected':'' }"/>>작성자</option>
+ 						<option value="TC" <c:out value="${ pageMaker.cri.type eq 'TC'? 'selected':'' }"/>>제목 or 내용</option>
+ 						<option value="TW" <c:out value="${ pageMaker.cri.type eq 'TW'? 'selected':'' }"/>>제목 or 작성자</option>
+ 						<option value="TWC" <c:out value="${ pageMaker.cri.type eq 'TCW'? 'selected':'' }"/>>제목 or 내용 or 작성자</option>
  					</select>
- 					<input type="text" name="keyword" />
- 					<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum}'/>
- 					<input type="hidden" name="amount" value='${pageMaker.cri.amount}' />
+ 					<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"/>' />
+ 					<input type="hidden" name="pageNum" value='${ pageMaker.cri.pageNum }'/>
+ 					<input type="hidden" name="amount" value='${ pageMaker.cri.amount }' />
  					<button class='btn btn-default'>Search</button>
  				</form>
  			</div>
@@ -98,7 +98,9 @@
   		<!-- a태그가 동작하지 못하도록 막음 -->
   		<form id="actionForm" action="/board/list" method="get">
   			<input type="hidden" name="pageNum" value="${ pageMaker.cri.pageNum }">
-  			<input type="hidden" name="amount" value="${ pageMaker.cri.amount }">
+  			<input type="hidden" name="amount" value='${ pageMaker.cri.amount }' />
+  			<input type="hidden" name="type" value='${ pageMaker.cri.type }' />
+  			<input type="hidden" name="keyword" value='${ pageMaker.cri.keyword }' />
   		</form>
   		
   
@@ -189,6 +191,27 @@
       			actionForm.submit();
       		});
       		
+      		
+      		/* 검색버튼 이벤트 처리 */
+      		var searchForm = $("#searchForm");
+      		
+      		$("#searchForm button").on("click", function(e){
+      			
+      			if(!searchForm.find("option:selected").val()){
+      				alert("검색 종류를 선택하세요.");
+      				return false;
+      			}
+      			
+      			if(!searchForm.find("input[name='keyword']").val()){
+      				alert("키워드를 입력하세요.");
+      				return false;
+      			}
+      			
+      			searchForm.find("input[name='pageNum']").val("1");
+      			e.preventDefault();	// onClick 이벤트만 실행하고 페이지 최상단으로 가는것을 막기위해 사용 
+      			
+      			searchForm.submit();
+      		});
       		
       	});
       	

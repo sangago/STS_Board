@@ -75,6 +75,43 @@ public class BoardController {
 	}
 	
 	
+// UriComoponentsBuilder를 사용하지 않음 	
+//	
+//	@PostMapping("/modify")
+//	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+//		
+//		log.info("modify:" + board);
+//		
+//		if(service.modify(board)) {
+//			rttr.addFlashAttribute("result", "success");
+//		}
+//		
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+//		
+//		return "redirect:/board/list";
+//	}
+//	
+//	@PostMapping("/remove")
+//	public String remove(@RequestParam("bno") Integer bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+//		
+//		log.info("remove..." + bno);
+//		if(service.remove(bno)) {
+//			rttr.addFlashAttribute("result", "success");
+//		}
+//		
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+//		
+//		return "redirect:/board/list";			// 게시물 삭제 후 목록 페이지 이동 
+//		
+//	}
+	
+// UriComoponentsBuilder를 사용 한 수정&삭제 	
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
@@ -84,10 +121,8 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
+		return "redirect:/board/list" + cri.getListLink();
 		
-		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/remove")
@@ -98,12 +133,10 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		
-		return "redirect:/board/list";			// 게시물 삭제 후 목록 페이지 이동 
+		return "redirect:/board/list" + cri.getListLink();			// 게시물 삭제 후 목록 페이지 이동 
 		
 	}
+// END    UriComoponentsBuilder를 사용 한 수정&삭제	
 	
 }
 

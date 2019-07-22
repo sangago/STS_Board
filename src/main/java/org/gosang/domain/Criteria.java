@@ -1,5 +1,7 @@
 package org.gosang.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -34,4 +36,14 @@ public class Criteria {
 		return type == null? new String[] {}: type.split("");
 	}
 	
+	// UriComponentsBuilder 클래스 : 여러개의 파라미터를 연결해서 URL의 형태로 만들어 주는 기능이 있
+	public String getListLink() {
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyword", this.getKeyword());
+		
+		return builder.toUriString();
+	}
 }
