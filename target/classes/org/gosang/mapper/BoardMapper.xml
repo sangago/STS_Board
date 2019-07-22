@@ -45,7 +45,7 @@
 	
 	<!-- 동일한 SQL의 일부를 재사용 -->
 	<sql id="criteria">
-		<trim prefixOverrides="OR">
+		<trim prefix=" and (" suffix=")" prefixOverrides="OR">
 		 	<foreach item='type' collection="typeArr">
 		 		<trim prefix="OR">
 		 			<choose>
@@ -69,11 +69,11 @@
 		<![CDATA[
 			select *
 			from tbl_board
-			where bno > 0 and 		 
+			where bno > 0		 
 		]]>
 		
-		<include refid="criteria"></include>		 
-			 
+		<include refid="criteria"></include>
+		
 		 <![CDATA[
 			order by bno desc
 			limit #{pageStart}, #{amount}
@@ -85,8 +85,9 @@
 		<![CDATA[
 			select count(bno) 
 			from tbl_board
-			where bno > 0 and
+			where bno > 0
 		]]>
+		
 	 	<include refid="criteria"></include>
 	</select>
 	</mapper>
