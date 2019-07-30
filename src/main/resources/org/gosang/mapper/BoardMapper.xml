@@ -24,7 +24,7 @@
 	</delete>
 	
 	<update id="update">
-		update tbl_board set title=#{title}, content=#{content}, writer=#{writer}, updateDate = current_timestamp where bno = #{bno}
+		update tbl_board set title = #{title}, content = #{content}, writer = #{writer}, updateDate = current_timestamp where bno = #{bno}
 	</update>
 	
 	<!-- <select id="getListWithPaging" resultType="org.gosang.domain.BoardVO">
