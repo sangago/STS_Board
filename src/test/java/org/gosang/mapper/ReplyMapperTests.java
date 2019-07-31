@@ -1,6 +1,7 @@
 package org.gosang.mapper;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.gosang.domain.Criteria;
 import org.gosang.domain.ReplyVO;
@@ -18,26 +19,26 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ReplyMapperTests {
 	
-	private Integer[] bnoArr = { 314, 315, 316, 317, 318 };
+	private Integer[] bnoArr = { 2555872, 2555871, 2555870, 2555869, 2555868 };
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 
 	// Insert Test
-//	@Test
-//	public void testCreate() {
-//		
-//		IntStream.rangeClosed(1, 10).forEach(i -> {
-//			
-//			ReplyVO vo = new ReplyVO();
-//			
-//			vo.setBno(bnoArr[i % 5]);
-//			vo.setReply("댓글테스트 " + i);
-//			vo.setReplyer("replyer " + i);
-//			
-//			mapper.insert(vo);
-//		});
-//	}
+	@Test
+	public void testCreate() {
+		
+		IntStream.rangeClosed(1, 10).forEach(i -> {
+			
+			ReplyVO vo = new ReplyVO();
+			
+			vo.setBno(bnoArr[i % 5]);
+			vo.setReply("댓글테스트 " + i);
+			vo.setReplyer("replyer " + i);
+			
+			mapper.insert(vo);
+		});
+	}
 	
 	
 	// Read Test

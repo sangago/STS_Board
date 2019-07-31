@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-.form-group{padding:10px 20px;}
+.form-group {padding:10px 20px;}
 .regBtn {float:right;}
-.button-right-m5{margin-right:5px;}
-.atag{color:#858796;}
-.atag:hover{color:black; text-decoration:none;}
-.hidden{display:hidden;}
+.button-right-m5 {margin-right:5px;}
+.atag {color:#858796;}
+.atag:hover {color:black; text-decoration:none;}
+.hidden {display:hidden;}
 
 
 .pagination {float:right; border-top:thin solid #999; border-bottom:thin solid #999;}
@@ -13,8 +13,12 @@
 .pageNumber {border-right:thin solid #999;}
 
 .pagination li:nth-child(1) {border-left:thin solid #999;}
-.pagination li>a:active{background-color:#233DBA; color:#fff; text-decoration:none;} /* 마우스를 누르고 있을때 효과 */
+.pagination li>a:active {background-color:#233DBA; color:#fff; text-decoration:none;} /* 마우스를 누르고 있을때 효과 */
 
 
 .previous {border-right:thin solid #999;}
 .next {border-right:thin solid #999;}
+
+/* get.jsp */
+.header small {float:right; margin-right:40px; margin-top:3px;}
+.chat li {list-style:none; padding:10px 0;}

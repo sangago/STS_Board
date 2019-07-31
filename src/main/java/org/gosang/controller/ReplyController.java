@@ -85,7 +85,7 @@ public class ReplyController {
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(
-			@RequestBody ReplyVO vo,
+			@RequestBody ReplyVO vo,				// 수정되는 데이터는 json포멧이기 때문에 @RequestBody 이용 	
 			@PathVariable("rno") Integer rno) {
 				
 				vo.setRno(rno);
@@ -95,6 +95,6 @@ public class ReplyController {
 				log.info("modify: " + vo);
 				
 				return service.modify(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+	}
 	
 }
