@@ -106,12 +106,42 @@ var replyService = (function(){
 		});
 	}
 	
+	// 시간처리: 문화권마다 표기 순서등이 다르기 때문에 화면에서 포맷을 처리
+	function displayTime(timeValue){
+		
+		var today = new Date();
+		
+		var gap = today.getTime() - timeValue;
+		
+		var dateObj = new Date(timeValue);
+		var str = "";
+		
+		if(gap < (1000 * 60 * 60 * 24)){	// 1초 * 60초(1분) * 60분(1시간) * 24(시간) -> 24시간이 안됐으면 시분초 표시 
+			
+			var hh = dateObj.getHours();
+			var mi = dateObj.getMinutes();
+			var ss = dateObj.getSeconds();
+			
+			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi, ':', (ss > 9 ? '' : '0') + ss].join('');
+		
+		} else {	// 24시간이 넘으면 년월일로 표시 
+			
+			var yy = dateObj.getFullYear();
+			var mm = dateObj.getMonth() + 1;
+			var dd = dateObj.getDate();
+			
+			return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/', (dd > 9 ? '' : '0') + dd ].join('');
+		}
+	}
+	
+	
 	return {
 		add : add,
 		getList : getList,
 		remove : remove,
 		update : update,
-		get : get
+		get : get,
+		displayTime : displayTime
 	};
 	
 	
