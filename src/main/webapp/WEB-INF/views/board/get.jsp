@@ -205,15 +205,53 @@
           		});
           		
           		
-          		// 특정 댓글 클릭시 
+          		// 특정 댓글 클릭시 수정 창 띄우기 
           		$(".chat").on("click", "li", function(e){
           			
           			var rno = $(this).data("rno");
           			
+          			replyService.get(rno, function(reply){
+          				
+          				modalInputReply.val(reply.reply);
+          				modalInputReplyer.val(reply.replyer);
+          				modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+          				modal.data("rno", reply.rno);
+          				
+          				modal.find("button[id != 'modalCloseBtn']").hide();
+          				modalModBtn.show();
+          				modalRemoveBtn.show();
+          				
+          				$(".modal").modal("show");
+          			});
           			console.log(rno);
           		});
           		 
           		
+          		// 댓글 수정 창에서 Modify버튼 클릭시 
+          		modalModBtn.on("click", function(e){
+          			
+          			var reply = { rno:modal.data("rno"), reply: modalInputReply.val()};
+          			
+          			replyService.update(reply, function(result){
+          				
+          				alert(result);
+          				modal.modal("hide");
+          				showList(1);
+          			});
+          		});
+          		
+          		// 댓글 수정 창에서 Remove버튼 클릭시 
+          		modalRemoveBtn.on("click", function(e){
+          			
+          			var rno = modal.data("rno");
+          			
+          			replyService.remove(rno, function(result){
+          				
+          				alert(result);
+          				modal.modal("hide");
+          				showList(1);
+          			});
+          		});
           		
           		
           		// 댓글등록 테스트 
