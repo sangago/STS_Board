@@ -22,9 +22,22 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="org.gosang.domain.ReplyVO">
+	
+		<![CDATA[
 		select rno, bno, reply, replyer, replyDate, updateDate
 		from tbl_reply
 		where bno = #{bno}
-		order by rno asc	
+		order by rno desc
+		limit #{cri.pageStart}, #{cri.amount}
+		]]>
+			
+	</select>
+
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			select count(rno) 
+			from tbl_reply
+			where bno = #{bno}
+		]]>
 	</select>
 </mapper>

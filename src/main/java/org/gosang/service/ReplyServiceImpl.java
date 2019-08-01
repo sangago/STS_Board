@@ -3,6 +3,7 @@ package org.gosang.service;
 import java.util.List;
 
 import org.gosang.domain.Criteria;
+import org.gosang.domain.ReplyPageDTO;
 import org.gosang.domain.ReplyVO;
 import org.gosang.mapper.ReplyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,12 @@ public class ReplyServiceImpl implements ReplyService {
 		log.info("get Reply List of a Board " + bno);
 		
 		return mapper.getListWithPaging(cri, bno);
+	}
+
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Integer bno) {
+		
+		return new ReplyPageDTO( mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
 	}
 
 }

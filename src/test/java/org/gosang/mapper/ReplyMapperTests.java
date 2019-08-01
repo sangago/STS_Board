@@ -89,6 +89,18 @@ public class ReplyMapperTests {
 		replies.forEach(reply -> log.info(reply));
 	}
 	
+	// 댓글 페이징 테스트
+	@Test
+	public void testList2() {
+		
+		Criteria cri = new Criteria(2, 10);
+		
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 2555873);
+		
+		replies.forEach(reply -> log.info(reply));
+		
+	}
+	
 	@Test
 	public void testMapper() {
 		log.info(mapper);

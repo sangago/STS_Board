@@ -21,4 +21,7 @@ public interface ReplyMapper {
 			@Param("cri") Criteria cri,
 			@Param("bno") Integer bno);
 	
+	// 댓글갯수파악
+	public int getCountByBno(Integer bno);
+	
 }

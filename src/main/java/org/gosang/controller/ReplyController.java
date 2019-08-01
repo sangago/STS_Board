@@ -3,6 +3,7 @@ package org.gosang.controller;
 import java.util.List;
 
 import org.gosang.domain.Criteria;
+import org.gosang.domain.ReplyPageDTO;
 import org.gosang.domain.ReplyVO;
 import org.gosang.service.ReplyService;
 import org.springframework.http.HttpStatus;
@@ -47,15 +48,15 @@ public class ReplyController {
 	
 	@GetMapping(value = "/pages/{bno}/{page}",
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") Integer bno){
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Integer bno){
 		
 		log.info("getList...........");
 		
 		Criteria cri = new Criteria(page,10);
 		
-		log.info(cri);
+		log.info("cri: " + cri);
 		
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	
