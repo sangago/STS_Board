@@ -62,11 +62,13 @@
           	</div><!-- panel-body END -->
           
           </div>
+         
           
           <!-- 댓글구역 -->
           <div class="card shadow mb-4 testdiv">
           	<div class="card-header py-3 col-lg-12">
-              <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-comments fa-fw"></i> Reply</h6>
+              <strong class="m-0 font-weight-bold text-primary"><i class="fa fa-comments fa-fw"></i> Reply</strong>
+              <button id='addReplyBtn' class="btn btn-dark right right">New Reply</button>
             </div>
           	
           	<div class="panel-body">
@@ -75,7 +77,7 @@
           				<div>
           					<div class="header">
           						<strong class="primary-front">user00</strong>
-          						<small class="pull-right text-muted">2018-01-01 13:13</small>
+          						<small class="pull-right text-muted right">2018-01-01 13:13</small>
           					</div>
           					<p>Good job!</p>
           				</div>
@@ -83,7 +85,42 @@
           		</ul>
           	</div>
           </div>
+         
           
+		  <!-- 댓글쓰기창 -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">REPLY MODAL</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <div class="form-group">
+	         					<label>Reply</label>
+	         					<input class="form-control" name='reply' value='New Reply!!!!'>
+	         				</div>
+	         				<div class="form-group">
+	         					<label>Replyer</label>
+	         					<input class="form-control" name='replyer' value='replyer'>
+	         				</div>
+	         				<div class="form-group">
+	         					<label>Reply Date</label>
+	         					<input class="form-control" name='replyDate' value=''>
+	         				</div>
+	         			</div><!-- END modal-body  -->
+			      <div class="modal-footer">
+			      	<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
+	         		<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
+	         		<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
+			        <button id='modalCloseBtn' type="button" class="btn btn-secondary button-right-m5" data-dismiss="modal">Close</button><!-- data-dismiss : 모달창을 닫히도록한 -->
+			      </div>
+			    </div>
+			  </div>
+		  </div>
+         
           
           <!-- reply.js 자바스크립트 추가 -->
           <script type="text/javascript" src="/resources/js/reply.js"></script>
@@ -120,14 +157,73 @@
           			})
           		}
           		
-          		// replyService add test
-				replyService.add(
+          		// 댓글등록 버튼 눌렀을시 
+    			var modal = $(".modal");
+          		var modalInputReply = modal.find("input[name='reply']");
+          		var modalInputReplyer = modal.find("input[name='replyer']");
+          		var modalInputReplyDate = modal.find("input[name='replyDate']");
+          		
+          		var modalModBtn = $("#modalModBtn");
+          		var modalRemoveBtn = $("#modalRemoveBtn");
+          		var modalRegisterBtn = $("#modalRegisterBtn");
+          		
+          		$("#addReplyBtn").on("click", function(e){
+          			
+          			modal.find("input").val("");
+          			modalInputReplyDate.closest("div").hide();
+          			modal.find("button[id != 'modalCloseBtn']").hide();
+          			
+          			modalRegisterBtn.show();
+          			
+          			modal.modal("show");
+          			
+          		});
+          		
+          		
+          		// Register버튼 눌렀을때 
+          		modalRegisterBtn.on("click", function(e){
+          			
+          			var reply = {
+          					reply: modalInputReply.val(),
+          					replyer: modalInputReplyer.val(),
+          					bno:bnoValue
+          			};
+          			
+          			replyService.add(reply, function(result){
+          				
+          				alert(result);
+          				
+          				modal.find("input").val("");
+          				
+          				// 모달창이랑 모달배경 없앰 modal.modal("hide");
+          				/* modal.removeClass("modal","fade"); */
+          				modal.modal("hide");
+          				
+          				
+          				showList(1);	// 댓글 등록 후 리스트 업데이트 
+          			});
+          		});
+          		
+          		
+          		// 특정 댓글 클릭시 
+          		$(".chat").on("click", "li", function(e){
+          			
+          			var rno = $(this).data("rno");
+          			
+          			console.log(rno);
+          		});
+          		 
+          		
+          		
+          		
+          		// 댓글등록 테스트 
+				/* replyService.add(
 					{reply:"JS Test", replyer:"tester", bno:bnoValue}
 					, 
 					function(result){
 						alert("RESULT: " + result);
 					}
-				);          		
+				);   */        		
           		
           		// reply list test
           		replyService.getList({bno:bnoValue, page:1}, function(list){
@@ -150,13 +246,13 @@
           		}); */
           					
           		// 댓글 수정
-          		replyService.update({
+          		/* replyService.update({
           			rno : 54,
           			bno : bnoValue,
           			reply : "수정 Reply...."
           		}, function(result){
           			alert("수정 완료....");
-          		});
+          		}); */
           		
           		// 댓글 조회 
           		replyService.get(10, function(data){
