@@ -38,7 +38,8 @@ var replyService = (function(){
 		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
 				function(data){
 					if(callback){
-						callback(data);
+//						callback(data);		// 페이징 없이 댓글 목록 전체를 가져오는 경우
+						callback(data.replyCnt, data.list);
 					}
 		}).fail(function(xhr, status, err){
 			if(error){

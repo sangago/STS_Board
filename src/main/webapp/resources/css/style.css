@@ -22,8 +22,9 @@
 .previous {border-right:thin solid #999;}
 .next {border-right:thin solid #999;}
 
-/* get.jsp */
+/************************************* get.jsp **************************************/
 
+/* 모달 관련 */
 .replyModal{
 	position: fixed;
 	top: 0;
@@ -38,3 +39,8 @@
 .header small {margin-right:40px; margin-top:3px;}
 .chat {padding-right:40px;}
 .chat li {list-style:none; padding-top:10px; border-bottom: 1px dotted #333;}
+
+/* 댓글 페이지 처리 */
+.replyPageDiv {padding:40px;}
+
+/*************************************************************************************/

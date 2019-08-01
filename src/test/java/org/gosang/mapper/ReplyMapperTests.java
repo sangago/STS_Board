@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ReplyMapperTests {
 	
-	private Integer[] bnoArr = { 2555872, 2555871, 2555870, 2555869, 2555868 };
+	private Integer[] bnoArr = { 2555873, 2555873, 2555873, 2555873, 2555873 };
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
