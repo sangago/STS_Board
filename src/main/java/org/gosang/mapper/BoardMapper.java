@@ -2,6 +2,7 @@ package org.gosang.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.gosang.domain.BoardVO;
 import org.gosang.domain.Criteria;
 
@@ -22,4 +23,6 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	
 	public int getTotalCount(Criteria cri);	// 전체 데이터 개수 처리 
+	
+	public void updateReplyCnt(@Param("bno") int i, @Param("amount") int amount);
 }
