@@ -5,7 +5,7 @@
 	<mapper namespace="org.gosang.mapper.BoardAttachMapper">
 	
 	<insert id="insert">
-		insert into tbl_attach (uuid, uploadpath, filename, filetype, bno)
+		insert into tbl_attach(uuid, uploadpath, filename, filetype, bno)
 		values (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
 	</insert>
 	
@@ -13,7 +13,7 @@
 		delete from tbl_attach where uuid = #{uuid}
 	</delete>
 	
-	<select id="finByBno" resultType="org.gosang.domain.BoardAttachVO">
+	<select id="findByBno" resultType="org.gosang.domain.BoardAttachVO">
 		select * from tbl_attach where bno = #{bno}
 	</select>
 	

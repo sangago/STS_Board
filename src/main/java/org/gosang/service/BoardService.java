@@ -2,6 +2,7 @@ package org.gosang.service;
 
 import java.util.List;
 
+import org.gosang.domain.BoardAttachVO;
 import org.gosang.domain.BoardVO;
 import org.gosang.domain.Criteria;
 
@@ -20,4 +21,6 @@ public interface BoardService {
 	public List<BoardVO> getList(Criteria cri);
 	
 	public int getTotal(Criteria cri);
+	
+
 }

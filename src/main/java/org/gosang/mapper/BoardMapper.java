@@ -24,5 +24,8 @@ public interface BoardMapper {
 	
 	public int getTotalCount(Criteria cri);	// 전체 데이터 개수 처리 
 	
-	public void updateReplyCnt(@Param("bno") int i, @Param("amount") int amount);
+	public void updateReplyCnt(@Param("bno") int bno, @Param("amount") int amount);
+
+	public void insertSelectKey(BoardVO board);
+
 }

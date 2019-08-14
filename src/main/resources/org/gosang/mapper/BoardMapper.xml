@@ -15,6 +15,15 @@
 		values(#{bno}, #{title}, #{content}, #{writer})
 	</insert>
 
+	<insert id="insertSelectKey">
+		insert into tbl_board(bno, title, content, writer)
+		values(#{bno}, #{title}, #{content}, #{writer})
+		
+		<selectKey keyProperty="bno" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>	
+	</insert>
+	
 	<select id="read" resultType="org.gosang.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>	
@@ -95,4 +104,5 @@
 	<update id="updateReplyCnt">
 		update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
 	</update>
+	
 	</mapper>

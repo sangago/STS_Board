@@ -2,27 +2,46 @@ package org.gosang.service;
 
 import java.util.List;
 
+import org.gosang.domain.BoardAttachVO;
 import org.gosang.domain.BoardVO;
 import org.gosang.domain.Criteria;
+import org.gosang.mapper.BoardAttachMapper;
 import org.gosang.mapper.BoardMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
 	
+	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper attachMapper;
+	
+	@Transactional
 	@Override
 	public void register(BoardVO board) {
 		
-		log.info("register........." + board);
+		log.info("register.........." + board);
 		
-		mapper.register(board);
+		mapper.insertSelectKey(board);
+		
+		if(board.getAttachList() == null || board.getAttachList().size() <=0) {
+			return;
+		}
+		
+		board.getAttachList().forEach(attach -> {
+			
+			attach.setBno(board.getBno());
+			attachMapper.insert(attach);
+		});
 	}
 
 	@Override
@@ -72,4 +91,5 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getTotalCount(cri);
 	}
+
 }

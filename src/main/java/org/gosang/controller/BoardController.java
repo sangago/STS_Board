@@ -50,11 +50,19 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
+		log.info("============================");
 		log.info("register: " + board);
 		
-		service.register(board);
+		if(board.getAttachList() != null) {
+			
+			board.getAttachList().forEach(attach -> log.info(attach));
+			
+		}
 		
+		service.register(board);		
 		rttr.addFlashAttribute("result", board.getBno());
+		
+		log.info("============================");
 		
 		return "redirect:/board/list";
 	}
@@ -73,43 +81,6 @@ public class BoardController {
 		log.info("/get or /modify");
 		model.addAttribute("board", service.get(bno));
 	}
-	
-	
-// UriComoponentsBuilder를 사용하지 않음 	
-//	
-//	@PostMapping("/modify")
-//	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-//		
-//		log.info("modify:" + board);
-//		
-//		if(service.modify(board)) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//		
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
-//		
-//		return "redirect:/board/list";
-//	}
-//	
-//	@PostMapping("/remove")
-//	public String remove(@RequestParam("bno") Integer bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-//		
-//		log.info("remove..." + bno);
-//		if(service.remove(bno)) {
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//		
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
-//		
-//		return "redirect:/board/list";			// 게시물 삭제 후 목록 페이지 이동 
-//		
-//	}
 	
 // UriComoponentsBuilder를 사용 한 수정&삭제 	
 	@PostMapping("/modify")

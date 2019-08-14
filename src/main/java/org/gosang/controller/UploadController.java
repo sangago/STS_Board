@@ -291,7 +291,7 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type){
 		
-		log.info("deleteFIle: " + fileName);
+		log.info("deleteFile: " + fileName);
 		
 		File file;
 		
