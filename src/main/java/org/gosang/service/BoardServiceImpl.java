@@ -92,4 +92,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getTotalCount(cri);
 	}
 
+	@Override
+	public List<BoardAttachVO> getAttachList(Integer bno) {
+
+		log.info("get Attach list by bno" + bno);
+		
+		return attachMapper.findByBno(bno);
+	}
+
 }

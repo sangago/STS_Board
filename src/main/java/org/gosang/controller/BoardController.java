@@ -1,9 +1,15 @@
 package org.gosang.controller;
 
+import java.util.List;
+
+import org.gosang.domain.BoardAttachVO;
 import org.gosang.domain.BoardVO;
 import org.gosang.domain.Criteria;
 import org.gosang.domain.PageDTO;
 import org.gosang.service.BoardService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -108,6 +115,16 @@ public class BoardController {
 		
 	}
 // END    UriComoponentsBuilder를 사용 한 수정&삭제	
+	
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody		// 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할(JSON 데이터를 반환)
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Integer bno){
+		
+		log.info("getAttachList " + bno);
+		
+		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+	}
+	
 	
 }
 
