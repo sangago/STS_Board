@@ -20,4 +20,10 @@
 	<delete id="deleteAll">
 		delete from tbl_attach where bno = #{bno}
 	</delete>
+	
+	<select id="getOldFiles" resultType="org.gosang.domain.BoardAttachVO">
+		select * from tbl_attach where uploadpath = date_format(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y/%m/%d') 
+	</select>
+	
+	<!-- DATE_SUB(NOW(), INTERVAL 1 DAY) -->
 </mapper>

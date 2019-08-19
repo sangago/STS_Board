@@ -220,6 +220,21 @@
 		  	<version>0.1.5</version>
 		</dependency>
 		
+		
+		<!-- 주기적으로 특정한 프로그램을 실행하기 위함(잘못업로드된 파일 주기적으로 삭제하기 위해) -->		
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+				
 		        
 	</dependencies>
     <build>
