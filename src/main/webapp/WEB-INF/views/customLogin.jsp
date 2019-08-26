@@ -39,23 +39,29 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
                   </div>
+                  
                   <form class="user" role="form" method="post" action="/login">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="User ID" name="username" autofocus>
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" value="">
-                    </div>
-                    <div class="form-group">
-	                    <div class="checkbox custom-control custom-checkbox small">
-	                    	<input name="remember-me" type="checkbox" class="custom-control-input" id="customCheck">
-	                    	<label class="custom-control-label" for="customCheck"> Remember Me</label>
+                  	<fieldset>
+	                    <div class="form-group">
+	                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="User ID" name="username" autofocus>
 	                    </div>
-                    </div>
+	                    
+	                    <div class="form-group">
+	                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" value="">
+	                    </div>
+	                    
+	                    <div class="form-group">
+		                    <div class="checkbox custom-control custom-checkbox small">
+		                    	<input name="remember-me" type="checkbox" class="custom-control-input" id="customCheck">
+		                    	<label class="custom-control-label" for="customCheck"> Remember Me</label>
+		                    </div>
+	                    </div>
+	                    
+	                    <a href="index.html" class="btn btn-success btn-primary btn-user btn-block">
+	                      Login
+	                    </a>
                     
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </a>
+                    </fieldset>
                     <!-- 
                     // 구글 & 페이스북 로그인 
                     <hr>
@@ -77,9 +83,12 @@
                     <a class="small" href="register.html">Create an Account!</a>
                   </div>
                    -->
-                </div>
-              </div>
-            </div>
+                   
+                  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  </form>
+                </div>	<!-- end "p-5" -->
+              </div>	<!-- end col-lg-6 -->
+            </div>	<!-- end row -->
           </div>
         </div>
 
@@ -90,14 +99,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="/resources/js/sb-admin-2.min.js"></script>
   
   <script>
   	
