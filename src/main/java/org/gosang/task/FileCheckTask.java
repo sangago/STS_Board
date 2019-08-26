@@ -48,7 +48,7 @@ public class FileCheckTask {
 	 * 		L 마지막
 	 * 		W 가까운 평일 
 	*/
-	@Scheduled(cron="0 * * * * *")	// cron : 주기 제어 -> 매분 0초가 될 때 마다 실행한다
+	@Scheduled(cron="0 0 2 * * *")	// cron : 주기 제어 -> 매일 새벽 2시에 동작 
 	public void checkFiles() throws Exception{
 		
 		log.warn("File Check Task run........");

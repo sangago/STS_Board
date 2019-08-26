@@ -13,6 +13,7 @@ import org.gosang.service.BoardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,7 @@ public class BoardController {
 	
 	//게시물 등록 
 	@PostMapping("/register")
+	@PreAuthorize("isAuthenticated()")	// @PreAuthorize: 요청이 들어와 함수를 실행하기 전에 권한을 검사 / isAuthenticated(): 어떤 사용자든 로그 한 사용자만 사용 할 수 있음
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
 		log.info("============================");
@@ -78,7 +80,8 @@ public class BoardController {
 	}
 	
 	// 입력페이지 보기  
-	@GetMapping("/register") 
+	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}

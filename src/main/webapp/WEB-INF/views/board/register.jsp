@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <%@include file="../includes/header.jsp" %>		
 <%@include file="../includes/topbar.jsp" %>		
 
@@ -24,9 +26,13 @@
             
             <!-- 입력부분 -->
           	<form role="form" action="/board/register" method="post">
+          	
+          		<!-- CSRF 토큰 설정 -->
+          		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          	
 	          	<div class="form-group">
 	          		<label>Title</label>
-	          		<input class="form-control" name='title'>
+	          		<input class="form-control" name='title' />
 	          	</div>
 	          	
 	          	<div class="form-group">
@@ -36,13 +42,14 @@
 	          	
 	          	<div class="form-group">
 	          		<label>Writer</label>
-	          		<input class="form-control" name='writer'>
+	          		<input class="form-control" name='writer' value='<sec:authentication property="principal.username"/>' readonly="readonly" />
 	          	</div>
 	          	
 	          	<div class="form-group">
 	          		<button type="submit" class="btn btn-primary button-right-m5">Submit</button>
 	          		<button type="reset" class="btn btn-danger button-right-m5">Reset</button>
 	          	</div>
+	          
           	</form>
           	
           </div>
