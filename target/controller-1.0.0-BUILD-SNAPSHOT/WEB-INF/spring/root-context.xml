@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- log4jdbc.log4j2.properties 파일 추가 전  
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+		 -->
+		<!-- log4jdbc.log4j2.properties 추가 후 -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="username" value="gosang"></property>
+		<property name="password" value="a1b2c3^^"></property>
+	</bean>
+	
+	<!-- HikariCP configuration 
+		 sqlSessionFactory : 스프링에 sqlSessionFactory를 등록.(스프링과 연동하는 작업이기 때문에 mybatis-spring라이브러리 사용) -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>	
+	
+	<!-- transactionManager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:annotation-driven />
+	
+	
+	<!-- org.gosang.mapper 패키지 조사 -->
+	<mybatis-spring:scan base-package="org.gosang.mapper"/>
+	
+	<context:annotation-config></context:annotation-config>
+	
+		<!-- org.gosang.service 패키지 조사 -->
+		<context:component-scan base-package="org.gosang.service"></context:component-scan>	
+		
+		<context:component-scan base-package="org.gosang.aop"></context:component-scan>
+		
+		<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+		
+		
+		<!-- quartz(스케줄러) 사용하려고 -->
+		<context:component-scan base-package="org.gosang.task"></context:component-scan>
+		
+		<task:annotation-driven/>
+	
+</beans>

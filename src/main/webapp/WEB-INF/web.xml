@@ -38,19 +38,33 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-		<!-- 게시글 등록할때 한글 깨지지 않도록 UTF-8 필터 등록 -->
+	
+	
+	<!-- 게시글 등록할때 한글 깨지지 않도록 UTF-8 필터 등록 -->
 	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
+	    <filter-name>characterEncodingFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	    <init-param>
+	    	<param-name>encoding</param-name>
+	    	<param-value>UTF-8</param-value>
+	    </init-param>
+	    <init-param>
+	    	<param-name>forceEncoding</param-name>
+	    	<param-value>true</param-value>
+	    </init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<servlet-name>/*</servlet-name>
+	    <filter-name>characterEncodingFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	<!-- security-context.xml을 로딩하도록 설정 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml /WEB-INF/spring/security-context.xml</param-value>
+	</context-param>
+	
 	
 	<!-- 스프링 시큐리티(인코딩 설정 후 스프링 시큐리티 적용해야함. 순서 매우 중요) -->
 	<filter>
@@ -62,10 +76,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- security-context.xml을 로딩하도록 설정 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml /WEB-INF/spring/security-context.xml</param-value>
-	</context-param>
+
 	
 </web-app>
