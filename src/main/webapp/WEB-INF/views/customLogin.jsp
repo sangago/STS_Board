@@ -48,7 +48,7 @@
 	                    
 	                    <div class="form-group">
 	                      <input type="password" class="form-control form-control-user" id="inputPassword" 
-	                      			placeholder="Password" name="password" value="" >
+	                      			placeholder="Password" name="password" value="">
 	                    </div>
 	                    
 	                    <div class="form-group">
@@ -118,7 +118,16 @@
   		
   	});
   	
-  	
+	$("#inputPassword").keydown(function(key){
+
+		if (key.keyCode == 13) { // 13 = 엔테키
+
+  			$("form").submit();
+
+		}
+			
+	});
+	
   </script>
 
 </body>
