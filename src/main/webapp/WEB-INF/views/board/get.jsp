@@ -116,7 +116,10 @@
        <div class="card shadow mb-4 testdiv">
        	<div class="card-header py-3 col-lg-12">
            <strong class="m-0 font-weight-bold text-primary"><i class="fa fa-comments fa-fw"></i> Reply</strong>
-           <button id='addReplyBtn' class="btn btn-dark right right">New Reply</button>
+           <!--  로그인 한 사용자만 댓글을 추가 할 수 있음 -->
+           <sec:authorize access="isAuthenticated()">
+           		<button id='addReplyBtn' class="btn btn-dark right right">New Reply</button>
+           </sec:authorize>
          </div>
        	
        	<!-- 댓글 리스트 -->
