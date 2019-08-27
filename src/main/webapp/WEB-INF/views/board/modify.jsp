@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <%@include file="../includes/header.jsp" %>		
 <%@include file="../includes/topbar.jsp" %>		
 
@@ -24,7 +26,10 @@
          
         	<!-- modify 부분 -->
         	<form role="form" action="/board/modify" method="post">
-       	
+       			
+       			<!-- CSRF 토큰 설정 -->
+          		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          		
 	        	<div class="panel-body">
 	        		<div class="form-group">
 	        			<label>BNO</label>
@@ -100,8 +105,13 @@
         			location.href : 새로운 페이지로 이동된다(히스토리에 기록된다)
         		-->
         	<div class="form-group">
-        		<button data-oper='modify' class="btn btn-warning button-right-m5"  onclick="location.href='/board/modify?bno=<c:out value="${ board.bno }"/>'">Modify</button>
-        		<button type="submit" data-oper="remove" class="btn btn-danger button-right-m5">Remove</button>
+        		<sec:authentication property="principal" var="pinfo"/>
+        		<sec:authorize access="isAuthenticated()">
+        			<c:if test="${pinfo.username eq board.writer}">
+        				<button data-oper='modify' class="btn btn-warning button-right-m5"  onclick="location.href='/board/modify?bno=<c:out value="${ board.bno }"/>'">Modify</button>
+        				<button type="submit" data-oper="remove" class="btn btn-danger button-right-m5">Remove</button>
+        			</c:if>
+        		</sec:authorize>
         		<button data-oper='list' class="btn btn-info button-right-m5"  onclick="location.href='/board/list'">List</button>
   			</div>
         		

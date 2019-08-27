@@ -43,11 +43,12 @@
                   <form class="user" role="form" method="post" action="/login">
                   	<fieldset>
 	                    <div class="form-group">
-	                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="User ID" name="username" autofocus>
+	                      <input type="text" class="form-control form-control-user" id="inputId" aria-describedby="emailHelp" placeholder="User ID" name="username" autofocus>
 	                    </div>
 	                    
 	                    <div class="form-group">
-	                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" value="">
+	                      <input type="password" class="form-control form-control-user" id="inputPassword" 
+	                      			placeholder="Password" name="password" value="" >
 	                    </div>
 	                    
 	                    <div class="form-group">
@@ -109,12 +110,14 @@
   <script src="/resources/js/sb-admin-2.min.js"></script>
   
   <script>
-  	
-  	$(".btn-success").on("click", function(e){
+  		
+	$(".btn-success").on("click", function(e){
   		
   		e.preventDefault();
   		$("form").submit();
+  		
   	});
+  	
   	
   </script>
 
