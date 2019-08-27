@@ -40,7 +40,7 @@
 	
 		<!-- 게시글 등록할때 한글 깨지지 않도록 UTF-8 필터 등록 -->
 	<filter>
-		<filter-name>encoding</filter-name>
+		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
@@ -48,12 +48,11 @@
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>encoding</filter-name>
-		<servlet-name>appServlet</servlet-name>
+		<filter-name>encodingFilter</filter-name>
+		<servlet-name>/*</servlet-name>
 	</filter-mapping>
 	
-	
-	<!-- 스프링 시큐리티 -->
+	<!-- 스프링 시큐리티(인코딩 설정 후 스프링 시큐리티 적용해야함. 순서 매우 중요) -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

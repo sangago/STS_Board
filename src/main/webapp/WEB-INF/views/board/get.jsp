@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <%@include file="../includes/header.jsp" %>		
 <%@include file="../includes/topbar.jsp" %>		
 
@@ -47,7 +49,16 @@
        			location.href : 새로운 페이지로 이동된다(히스토리에 기록된다)
        		-->
        		<div class="form-group">
-       			<button data-oper='modify' class="btn btn-warning button-right-m5">Modify</button>
+       			<sec:authentication property="principal" var="pinfo"/>	<!-- sec:authentication: 사용자 정보럴 가져와 principal에 저장되어 있다 -->
+       			<!-- sec:authorize : 권한이 있는지 확인하는 태그 
+       			access="isAuthenticated()" : 로그인 하지 않은 Anonymous User인지 확인하며 Anonymous User일 경우 true를 return한다
+       										인증받은 사용자일 경우 <sec:authorize></sec:authorize>사이의 내용이 보여진다 -->
+				<sec:authorize access="isAuthenticated()">	
+					<c:if test="${pinfo.username eq board.writer}">       			
+	       				<button data-oper='modify' class="btn btn-warning button-right-m5">Modify</button>
+	       			</c:if>
+       			</sec:authorize>
+       			
        			<button data-oper='list' class="btn btn-info button-right-m5">List</button>
  			</div>
  			
