@@ -1,7 +1,5 @@
 package org.gosang.controller;
 
-import java.util.List;
-
 import org.gosang.domain.Criteria;
 import org.gosang.domain.ReplyPageDTO;
 import org.gosang.domain.ReplyVO;
@@ -73,25 +71,25 @@ public class ReplyController {
 		return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
 	}
 	
-	
-	@DeleteMapping(value="/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@PathVariable("rno") Integer rno){
+	@PreAuthorize("principal.username == #vo.replyer")
+	@DeleteMapping(value="/{rno}")		// produces = { MediaType.TEXT_PLAIN_VALUE }
+	public ResponseEntity<String> remove(@RequestBody ReplyVO vo, @PathVariable("rno") Integer rno){
 		
 		log.info("remove: " + rno);
+		log.info("replyer: " + vo.getReplyer());
 		
 		return service.remove(rno) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	
+	@PreAuthorize("principal.username == #vo.replyer")
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH },
 			value = "/{rno}",
-			consumes = "application/json",
-			produces = { MediaType.TEXT_PLAIN_VALUE })
+			consumes = "application/json")	// produces = { MediaType.TEXT_PLAIN_VALUE }	
 	public ResponseEntity<String> modify(
 			@RequestBody ReplyVO vo,				// 수정되는 데이터는 json포멧이기 때문에 @RequestBody 이용 	
 			@PathVariable("rno") Integer rno) {
 				
-				vo.setRno(rno);
+//				vo.setRno(rno);
 				
 				log.info("rno: " + rno);
 				

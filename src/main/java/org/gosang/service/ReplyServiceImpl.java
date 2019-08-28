@@ -78,4 +78,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return new ReplyPageDTO( mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
 	}
 
+	@Override
+	public int remove(ReplyVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

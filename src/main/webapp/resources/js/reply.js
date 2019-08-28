@@ -50,10 +50,12 @@ var replyService = (function(){
 
 	
 	// 댓글 삭제
-	function remove(rno, callback, error){
+	function remove(rno, replyer, callback, error){
 		$.ajax({
 			type : 'delete',								// 통신타입 (post, get, delete 등등)
 			url : '/replies/' + rno,						// 요청할 url
+			data: JSON.stringify({rno:rno, replyer:replyer}),
+			contentType: "application/json; charset=utf-8",
 			success : function(deleteResult, status, xhr) {		// 요청 및 응답 성공시 행위 
 				if (callback) {
 					callback(deleteResult);
