@@ -48,6 +48,7 @@
 	          	<div class="form-group">
 	          		<button type="submit" class="btn btn-primary button-right-m5">Submit</button>
 	          		<button type="reset" class="btn btn-danger button-right-m5">Reset</button>
+	          		<button type="button" data-oper='list' class="btn btn-info button-right-m5"  onclick="location.href='/board/list'">List</button>
 	          	</div>
 	          
           	</form>

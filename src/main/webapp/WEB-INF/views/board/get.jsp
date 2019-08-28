@@ -314,9 +314,22 @@
        		var modalRemoveBtn = $("#modalRemoveBtn");
        		var modalRegisterBtn = $("#modalRegisterBtn");
        		
+       		
+       		var replyer = null;
+       		
+       		<sec:authorize access = "isAuthenticated()">
+       			replyer = '<sec:authentication property = "principal.username"/>';
+       		</sec:authorize>
+       		
+       		/* crs토큰과 관련된 변수 */
+    		var csrfHeaderName = "${_csrf.headerName}";
+    		var csrfTokenValue = "${_csrf.token}";
+    		
+    		
        		$("#addReplyBtn").on("click", function(e){
        			
        			modal.find("input").val("");
+       			modal.find("input[name='replyer']").val(replyer);
        			modalInputReplyDate.closest("div").hide();
        			modal.find("button[id != 'modalCloseBtn']").hide();
        			
@@ -324,6 +337,11 @@
        			
        			modal.modal("show");
        			
+       		});
+       		
+       		/* ajaxSend() 이용시 Ajax 전송시 CSRF토큰을 같이 전송하도록 셋팅 되어 있음(첨부파일 경우 ajax에 beforeSend 추가했었음) */
+       		$(document).ajaxSend(function(e, xhr, options){
+       			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
        		});
        		
        		
