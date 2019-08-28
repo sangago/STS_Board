@@ -261,6 +261,11 @@
 			return true;
 		}
 		
+		
+		/* crs토큰과 관련된 변수 */
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
 		$("input[type='file']").change(function(e){
 			
 			var formData = new FormData();
@@ -279,6 +284,9 @@
 	            url: '/uploadAjaxAction',
 	            processData: false,
 	            contentType: false,
+	            beforeSend: function(xhr){		/* beforeSend: Ajax를 요청하기 직전의 콜백함수. jqXHR 객체를 수정 할수 있다. */
+	            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);		/* jqXHR에 헤더값 추가 */
+	            },
 	            data: formData,
 	            type: 'POST',
 	            success: function(result){
