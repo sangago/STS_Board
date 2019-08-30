@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
     
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -178,10 +180,22 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                
+                <!-- 로그인 되어 있을때 -->
+                <sec:authorize access="isAuthenticated()">	<!-- isAuthenticated(): 인증한 사용자(로그인 됨) -->
+	                <a class="dropdown-item" href="/customLogout"><!--  data-toggle="modal" data-target="#logoutModal" -->
+	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+	                  Logout
+	                </a>
+	            </sec:authorize>
+	            <!-- 로그인이 안돼있을때 -->
+	            <sec:authorize access="isAnonymous()">	<!-- isAnonymous(): 익명의 사용자(로그인이 안된 상태) -->
+	                <a class="dropdown-item" href="/customLogin">
+	                  <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+	                  Login
+	                </a>
+	            </sec:authorize>
+	            
               </div>
             </li>
 

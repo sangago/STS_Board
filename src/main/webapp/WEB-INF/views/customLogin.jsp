@@ -61,6 +61,10 @@
 	                    <a href="index.html" class="btn btn-success btn-primary btn-user btn-block">
 	                      Login
 	                    </a>
+	                    
+	                    <a href="javascript:goList()" class="btn btn-warning btn-primary btn-user btn-block">
+	                      Back
+	                    </a>
                     
                     </fieldset>
                     <!-- 
@@ -117,7 +121,7 @@
   		$("form").submit();
   		
   	});
-  	
+	
 	$("#inputPassword").keydown(function(key){
 
 		if (key.keyCode == 13) { // 13 = 엔테키
@@ -127,6 +131,10 @@
 		}
 			
 	});
+	
+	function goList(){
+		location.href="board/list"
+	}
 	
   </script>
 
