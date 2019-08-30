@@ -30,4 +30,15 @@
 	
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 	
+	
+	<!-- 인터셉터 -->
+	
+	<beans:bean id="loginInterceptor" class="org.gosang.interceptor.LoginInterceptor"/>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

@@ -1,6 +1,7 @@
 package org.gosang.security;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		log.error("Access Denied Handler");
 		
 		log.error("Redirect........");
-		
+	
 		response.sendRedirect("/accessError");
 	}
 }

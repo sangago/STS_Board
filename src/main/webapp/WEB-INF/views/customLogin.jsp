@@ -43,12 +43,12 @@
                   <form class="user" role="form" method="post" action="/login">
                   	<fieldset>
 	                    <div class="form-group">
-	                      <input type="text" class="form-control form-control-user" id="inputId" aria-describedby="emailHelp" placeholder="User ID" name="username" autofocus>
+	                      <input type="text" class="form-control form-control-user" id="inputId" aria-describedby="emailHelp" placeholder="User ID" name="username" autocomplete="username" autofocus>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                      <input type="password" class="form-control form-control-user" id="inputPassword" 
-	                      			placeholder="Password" name="password" value="">
+	                      			placeholder="Password" name="password" value="" autocomplete="current-password">
 	                    </div>
 	                    
 	                    <div class="form-group">
@@ -114,11 +114,30 @@
   <script src="/resources/js/sb-admin-2.min.js"></script>
   
   <script>
-  		
+  	
 	$(".btn-success").on("click", function(e){
   		
   		e.preventDefault();
+
   		$("form").submit();
+  		var username = document.getElementById("inputId");
+		var password = document.getElementById("inputPassword");
+		
+  		if(username.value == ""){
+  			
+  			alert("아이디를 입력하세요.");
+  			username.focus();
+  			console.log("아이디를 입력하세요");
+  			return false;
+  		}
+  		
+  		if(password.value==""){
+  			alert("패스워드를 입력하세요.");
+  			password.focus();
+  			console.log("패스워드를 입력하세요");
+  			return false;
+  		}
+  		
   		
   	});
 	
