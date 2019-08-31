@@ -120,7 +120,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+			<!-- <scope>test</scope> -->	
+			<!-- 
+			scope를 test로 선언하면 해당라이브러리는 테스트 중에만 사용하고 실제 packaging중에는 포함되지 않는다
+			에러: package org.junit.runner does not exist 발생하게 된다
+			해결: scope 엘리먼트 제거	 
+			-->
 		</dependency>
 		
 		<!-- 스프링관련 추가 라이브러 -->
