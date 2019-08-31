@@ -112,7 +112,7 @@ public class MemberTests {
 						pstmt.close(); 
 					
 					} catch(Exception e) {
-						
+						e.printStackTrace();
 					  } 
 					}
 				
@@ -122,7 +122,7 @@ public class MemberTests {
 						con.close();
 						
 					} catch(Exception e) {
-						
+						e.printStackTrace();
 					  } 
 					}
 			}

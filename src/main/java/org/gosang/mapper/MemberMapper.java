@@ -4,6 +4,6 @@ import org.gosang.domain.MemberVO;
 
 public interface MemberMapper {
 	
-	public MemberVO read(String userid);
+	MemberVO read(String userid);
 		
 }
