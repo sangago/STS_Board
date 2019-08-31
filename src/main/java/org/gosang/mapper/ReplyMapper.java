@@ -8,20 +8,21 @@ import org.gosang.domain.ReplyVO;
 
 public interface ReplyMapper {
 	
-	public int insert(ReplyVO vo);
+	int insert(ReplyVO vo);
 	
-	public ReplyVO read(Integer rno);
+	ReplyVO read(Integer rno);
 	
-	public int delete(Integer rno);
+	int delete(Integer rno);
 	
-	public int update(ReplyVO reply);
+	int update(ReplyVO reply);
 
 	// 댓글목록: 두개 이상의 데이터를 파라미터로 전달하기 위해 @Param 이용  
-	public List<ReplyVO> getListWithPaging(
-			@Param("cri") Criteria cri,
-			@Param("bno") Integer bno);
+	List<ReplyVO> getListWithPaging(
+		@Param("cri") Criteria cri,
+		@Param("bno") Integer bno
+		);
 	
 	// 댓글갯수파악
-	public int getCountByBno(Integer bno);
+	int getCountByBno(Integer bno);
 	
 }

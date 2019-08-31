@@ -6,13 +6,13 @@ import org.gosang.domain.BoardAttachVO;
 
 public interface BoardAttachMapper {
 
-	public void insert(BoardAttachVO attach);
+	void insert(BoardAttachVO attach);
 	
-	public void delete(String uuid);
+	void delete(String uuid);
 	
-	public List<BoardAttachVO> findByBno(int bno);
+	List<BoardAttachVO> findByBno(int bno);
 	
-	public void deleteAll(int bno);
+	void deleteAll(int bno);
 	
-	public List<BoardAttachVO> getOldFiles();
+	List<BoardAttachVO> getOldFiles();
 }

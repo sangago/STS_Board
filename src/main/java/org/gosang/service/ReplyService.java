@@ -8,15 +8,15 @@ import org.gosang.domain.ReplyVO;
 
 public interface ReplyService {
 
-	public int register(ReplyVO vo);
+	int register(ReplyVO vo);
 	
-	public ReplyVO get(Integer rno);
+	ReplyVO get(Integer rno);
 	
-	public int modify(ReplyVO vo);
+	int modify(ReplyVO vo);
 	
-	public int remove(Integer rno);
+	int remove(Integer rno);
 	
-	public List<ReplyVO> getList(Criteria cri, Integer bno);
+	List<ReplyVO> getList(Criteria cri, Integer bno);
 	
-	public ReplyPageDTO getListPage(Criteria cri, Integer bno);
+	ReplyPageDTO getListPage(Criteria cri, Integer bno);
 }
