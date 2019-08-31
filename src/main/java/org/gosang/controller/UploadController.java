@@ -206,8 +206,6 @@ public class UploadController {
 			
 			Magic magic = new Magic();
 			MagicMatch match = magic.getMagicMatch(file, false);
-			String contentType = match.getMimeType();
-			
 			header.add("Content-Type", match.getMimeType());	// header.add("Content-Type", Files.probeContentType(file.toPath())); 였으나 Files.probeContentType()가 null값을 반환해서 변경 
 			
 			log.info("header: " + header);
