@@ -65,6 +65,12 @@
 	                    <a href="javascript:goList()" class="btn btn-warning btn-primary btn-user btn-block">
 	                      Back
 	                    </a>
+	                    <div class="form-group">
+	                    	<span>아직 회원이 아니신가요?</span>
+	                    	<a href="signIn" class="btn-sign">
+	                      		회원가입
+	                    	</a>
+	                    </div>
                     
                     </fieldset>
                     <!-- 
