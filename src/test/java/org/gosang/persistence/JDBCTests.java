@@ -27,9 +27,9 @@ public class JDBCTests {
 		
 		try(Connection con = 
 				DriverManager.getConnection(
-							"jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&serverTimezone=Asia/Seoul",
+							"jdbc:mysql://127.0.0.1:3306/testdb?useSSL=false&serverTimezone=Asia/Seoul",
 							"gosang",
-							"a1b2c3^^")){
+							"10060000")){
 			
 			log.info(con);
 			

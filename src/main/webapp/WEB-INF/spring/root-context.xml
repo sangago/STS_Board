@@ -18,13 +18,13 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<!-- log4jdbc.log4j2.properties 파일 추가 전  
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/testdb?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
 		 -->
 		<!-- log4jdbc.log4j2.properties 추가 후 -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/testdb?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
 		<property name="username" value="gosang"></property>
-		<property name="password" value="a1b2c3^^"></property>
+		<property name="password" value="10060000"></property>
 	</bean>
 	
 	<!-- HikariCP configuration 

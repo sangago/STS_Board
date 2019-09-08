@@ -25,9 +25,9 @@ public class MemberTests {
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
 	
-/*
+
 //	testInsertMember(): DB에 사용자 추가 
-	@Test
+/*	@Test
 	public void testInsertMember() {
 		
 		String sql = "insert into tbl_member(userid, userpw, username) values (?, ?, ?)";
@@ -64,8 +64,8 @@ public class MemberTests {
 			}	// END try
 		}	// END for
 	}
-*/	
-	
+*/
+
 // DB에 사용자 권한 추가
 	@Test
 	public void testInserAuth() {
@@ -129,4 +129,5 @@ public class MemberTests {
 			
 		}
 	}
+
 }
