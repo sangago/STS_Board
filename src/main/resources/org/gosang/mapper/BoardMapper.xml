@@ -19,8 +19,9 @@
 		insert into tbl_board(bno, title, content, writer)
 		values(#{bno}, #{title}, #{content}, #{writer})
 		
+		<!-- 위의 커리가 먼저 실행된 후 컬럼 bno의 값을 숫자형태로 가져온다 -->
 		<selectKey keyProperty="bno" order="AFTER" resultType="int">
-			select LAST_INSERT_ID()
+			select LAST_INSERT_ID()	<!-- 방금 입력한 테이블의 auto_increment로 증가된 컬러을 가져오는 쿼리 -->
 		</selectKey>	
 	</insert>
 	
