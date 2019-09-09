@@ -67,7 +67,7 @@
 	                    </a>
 	                    <div class="form-group">
 	                    	<span>아직 회원이 아니신가요?</span>
-	                    	<a href="signUp" class="btn-sign">
+	                    	<a href="/signup" class="btn-sign">
 	                      		회원가입
 	                    	</a>
 	                    </div>

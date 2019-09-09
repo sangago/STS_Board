@@ -2,9 +2,10 @@ package org.gosang.controller;
 
 import org.gosang.domain.SignupVO;
 import org.gosang.service.SignupService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -12,14 +13,19 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
+@RequestMapping("/")
 @AllArgsConstructor
 public class SignupController {
 	
 	private SignupService service;
 	
+	@GetMapping("/signup")
+	public void register() {
+		
+	}
 	
 	//게시물 등록 
-	@PostMapping("/register")
+	@PostMapping("/signup")
 	public String register(SignupVO signup, RedirectAttributes rttr) {
 		
 		log.info("============================");
@@ -32,5 +38,6 @@ public class SignupController {
 		
 		return "redirect:/customLogin";
 	}
+	
 	
 }

@@ -1,6 +1,5 @@
 package org.gosang.controller;
 
-import org.gosang.domain.BoardVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,8 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardControllerTests {
 	
 	
-	@Setter(onMethod_ = { @Autowired } )
-	
+	@Setter(onMethod_ = { @Autowired})	
 	private WebApplicationContext ctx;
 	
 	private MockMvc mockMvc;

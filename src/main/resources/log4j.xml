@@ -24,7 +24,7 @@
 
 	<!-- Application Loggers -->
 
-	<logger name="com.freehoon.web">
+	<logger name="org.gosang.controller">
 
 		<level value="info" />
 
