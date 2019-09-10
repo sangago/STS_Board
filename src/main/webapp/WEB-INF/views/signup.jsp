@@ -42,7 +42,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user" method="post">
+              <form class="user" method="post" action="/signup">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="userid" name="userid" placeholder="ID">
                   </div>
@@ -61,9 +61,10 @@
                   <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
                 </div>
                  -->
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                
+                <button type="submit" class="btn btn-primary btn-user btn-block">
                   Register Account
-                </a>
+                </button>
                 
                 <!-- SNS를 이용한 회원가입  
                 <hr>
