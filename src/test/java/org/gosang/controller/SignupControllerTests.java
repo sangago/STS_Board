@@ -38,7 +38,7 @@ public class SignupControllerTests {
 	@Test
 	public void testRegister() throws Exception{
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/signup")
-				.param("userid", "testUser1")
+				.param("userid", "testUser4")
 				.param("userpw", "1234")
 				.param("username", "테스트유저")
 				).andReturn().getModelAndView().getViewName();

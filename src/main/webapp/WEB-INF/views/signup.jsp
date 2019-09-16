@@ -42,7 +42,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user" method="post" action="/signup">
+              <form role="form" class="user" method="post" action="/signup">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="userid" name="userid" placeholder="ID">
                   </div>
@@ -75,6 +75,8 @@
                   <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                 </a>
                  -->
+                 
+                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
               </form>
               <hr>
               

@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class SignupVO {
 	
+	private Integer userbno;
 	private String userid;
 	private String userpw;
 	private String username;

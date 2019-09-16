@@ -8,5 +8,5 @@
 		insert into tbl_member(userid,userpw,username)
 		values(#{userid}, #{userpw}, #{username})
 	</insert>
-
+	
 </mapper>
