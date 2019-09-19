@@ -89,11 +89,17 @@
  					<li class="paginate_button pageNumber ${pageMaker.cri.pageNum == num ? "active":""}"><a href="${ num }">${ num }</a></li>
  				</c:forEach>
  				
- 				<!-- 다버튼 -->
+ 				<!-- 다음버튼 -->
  				<c:if test="${ pageMaker.next }">
  					<li class="paginate_button next"><a href="${ pageMaker.endPage +1 }">Next</a></li>
  				</c:if>
+ 				
  			</ul>
+ 			
+ 			<div>
+ 				<c:out value="${ pageMaker.total }"/>
+ 			</div>
+ 			
  		</div><!-- page번호 출력 종료 END pull-right -->
  		
   		<!-- a태그가 동작하지 못하도록 막음 -->
@@ -102,6 +108,7 @@
   			<input type="hidden" name="amount" value='${ pageMaker.cri.amount }' />
   			<input type="hidden" name="type" value='${ pageMaker.cri.type }' />
   			<input type="hidden" name="keyword" value='${ pageMaker.cri.keyword }' />
+  			<%-- <input type="hidden" name="total" value='${ pageMaker.total.total }' /> --%>
   		</form>
   		
   
@@ -112,7 +119,7 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">알  림</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -148,6 +155,8 @@
       		
       		var result = '<c:out value="${result}"/>';
       		
+      		var bnoTotal = '<c:out value="${ pageMaker.total }"/>'
+      		
       		/* modal처리 */
       		checkModal(result);
       		
@@ -160,7 +169,11 @@
       				return;
       			}
       			
-      			if(parseInt(result) == null){
+      			if(parseInt(result) == bnoTotal){
+      				$(".modal-body").html("게시글이 수정되었습니다.");
+      			}
+      			
+      			if(parseInt(result) != null){
       				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
       			}
       			
