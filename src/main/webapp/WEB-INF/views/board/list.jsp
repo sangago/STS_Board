@@ -169,12 +169,13 @@
       				return;
       			}
       			
-      			if(parseInt(result) == bnoTotal){
+      			/* if(parseInt(result) == 1){
       				$(".modal-body").html("게시글이 수정되었습니다.");
-      			}
+      			} */
       			
       			if(parseInt(result) != null){
-      				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+      				/* $(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다."); */
+      				$(".modal-body").html("처리가 완료되었습니다.");
       			}
       			
       			$("#exampleModal").modal('show');

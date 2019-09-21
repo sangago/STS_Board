@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,9 +99,10 @@ public class BoardController {
 // UriComoponentsBuilder를 사용 한 수정&삭제 	
 	@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, BindingResult result, RedirectAttributes rttr) {
 		
 		log.info("modify:" + board);
+		log.info("modify:::::::::::::::" + result);
 		
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
