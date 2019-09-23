@@ -24,7 +24,7 @@ public class SignupController {
 		
 	}
 	
-	//게시물 등록 
+	// 회원가입
 	@PostMapping("/signup")
 	public String register(SignupVO signup, RedirectAttributes rttr) {
 		
