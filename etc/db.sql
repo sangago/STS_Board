@@ -360,23 +360,21 @@ alter table tbl_member drop userbno;
 
 select * from tbl_member_auth;
 
+
+
+insert into tbl_member(userid, userpw, username) values ('tester1', 1234, 'tester');
+
+drop trigger TRG_signup_auth;
+
+alter trigtbl_member_authger TRG_signuptbl_member_auth disable;
+
+
+// 회원가입시 권한부여 트리거 
 DELIMITER $$
-create trigger TRG_signup_auth
-after insert on tbl_member
-for each row begin
-	insert into tbl_member_auth(userid, auth) values (new.id, ROLE_USER)
-end;
-DELIMITER $$
-
-
-
-
-
-
-
-
-
-
-
-
-
+CREATE TRIGGER TRG_signup_auth
+AFTER INSERT ON tbl_member
+FOR EACH ROW 
+BEGIN
+	insert into tbl_member_auth(userid, auth) values (new.userid, 'ROLE_USER');
+END; $$
+DELIMITER ;
